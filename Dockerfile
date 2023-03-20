@@ -1,11 +1,12 @@
-FROM ubuntu:focal-20230308 AS add-apt-repositories
+FROM debian:bullseye-20230227 AS add-apt-repositories
 
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg \
- && apt-key adv --fetch-keys http://www.webmin.com/jcameron-key.asc \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg ca-certificates apt-utils \
+ && apt-get update \
+ && apt-key adv --fetch-keys https://webmin.com/jcameron-key.asc \
  && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
 
-FROM ubuntu:focal-20230308
+FROM debian:bullseye-20230227
 
 LABEL maintainer="sameer@damagehead.com"
 
