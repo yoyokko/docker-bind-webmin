@@ -1,7 +1,7 @@
 FROM debian:bullseye-20230320 AS add-apt-repositories
 
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg ca-certificates apt-utils \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y systemctl gnupg ca-certificates apt-utils \
  && apt-get update \
  && apt-key adv --fetch-keys https://webmin.com/jcameron-key.asc \
  && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
