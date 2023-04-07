@@ -1,7 +1,7 @@
 FROM debian:bullseye-20230320 AS add-apt-repositories
 
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y systemctl gnupg ca-certificates apt-utils \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg ca-certificates apt-utils \
  && apt-get update \
  && apt-key adv --fetch-keys https://webmin.com/jcameron-key.asc \
  && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
@@ -23,7 +23,7 @@ RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       bind9=1:${BIND_VERSION}* bind9-host=1:${BIND_VERSION}* dnsutils \
-      webmin=${WEBMIN_VERSION}* \
+      webmin=${WEBMIN_VERSION}* systemctl \
  && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
