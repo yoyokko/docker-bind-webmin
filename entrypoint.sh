@@ -95,6 +95,10 @@ create_bind_cache_dir() {
   chown root:${BIND_USER} /var/cache/bind
 }
 
+fix_bind_servicename() {
+  sed -i 's/bind9.service/named.service/g' /etc/webmin/bind8/config
+}
+
 first_init() {
   if [ ! -f /data/.initialized ]; then
     set_webmin_redirect_port
@@ -127,6 +131,7 @@ if [[ -z ${1} ]]; then
     create_webmin_data_dir
     first_init
     set_root_passwd
+	fix_bind_servicename
     echo "Starting webmin..."
     systemctl start webmin
   fi
