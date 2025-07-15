@@ -56,7 +56,7 @@ jobs:
         # Docker 构建上下文为当前目录
         context: .
         # Dockerfile 路径
-        file: ./docker-bind-webmin/src/main/resources/docker/Dockerfile
+        file: ./docker-bind-webmin/src/main/Dockerfile
         # 如果不是 PR，推送镜像
         push: ${{ github.event_name != 'pull_request' }}
         # 使用提取的标签推送镜像
