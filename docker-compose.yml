@@ -6,6 +6,7 @@ services:
     image: crispychrispe/bind9-webmin2:latest
     ports:
     - "53:53/udp"
+    - "853:853/udp"
     - "53:53/tcp"
     - "10000:10000/tcp"
     volumes:
